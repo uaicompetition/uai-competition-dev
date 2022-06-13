@@ -41,7 +41,8 @@ so the image can execute a bash command with the environment variables.
 ### Example Docker projects
 Please check out a few example project that will be listed below
 and don't hesitate to contact oragnizers if any help or clarification neeeded.
-
+* https://github.com/uaicompetition/docker-merlin-cpp: build executable from source
+* https://github.com/uaicompetition/docker-merlin-cpp/tree/merlinbin: copy statically compiled executable inside image and define environment variables
 
 
 ### Environment Variables 
