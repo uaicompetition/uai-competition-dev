@@ -7,36 +7,52 @@ permalink: /competition-entry/requirements/
 
 ### Execution Environment
 
-The evaluations will be run on Linux machines up to 8 GB memory made available.
-We request that solvers be 64-bit executables, using only a single core (i.e., no parallel processes/threads). 
-A solver will have available the following environment variables:
+The evaluations will be run on Linux machines up to **8 GB memory** made available.
+
+We request that solvers be Docker images that containerize executables using only **a single core (i.e., no parallel processes/threads)**.
+
+Each submission will be ran using [Singularity](https://sylabs.io/guides/2.6/user-guide/index.html) 
+with restrictied computing resource per image as described in Tasks description.
 
 
-The solver's exit status will be recorded, treating 0 as normal and other numbers as an error. 
-Processes exceeding time or memory limits will be killed (via a SIGKILL signal), and 
-the final output solution (see format below) will be taken as the solver solution. 
+### Containerizing Solvers in Docker
+We will accept solver submissions in Docker images. 
+Participants have two options
+1. create a Docker project and upload its image to [Dockerhub](https://hub.docker.com/). 
+
+Then, submit Dockerhub repo `<ID>/<REPO>` so that we can
+  * pull the image `$ docker pull <ID>/<REPO>:latest` or
+  * build singularity image  ```$ singularity build --bind <HOST_FOLDER>:<IMAGE_FOLDER> <SOLVERNAME>.sif --writable docker://<ID>/<REPO>```
+
+2. Directly send a Docker project (Not image) with all necessary local files to build image
+
+Then, Docker image will be built locally using the project by
+``` $ docker build -t <ID>:<NAME> . ```
 
 
-### Command-line Format (TBD)
+### How to Containerizing Solvers in Docker
+Containerizing solver as a Docker image will allow participants to use any working environment 
+independ to the CentOS-based cluster environment.
 
-A solver will receive as input a filename of the model, a filename for the evidence, the query filename, and the task to solve. 
-The query filename is only relevant to the marginal MAP task. 
-Solvers working on the other three tasks should ignore this file.
-```
-./solver <input-model-file> <input-evidence-file>  <input-query-file>  <PR|MPE|MAR|MMAP|MLC>
-```
+Each image should be equipped with an executable and a folder to mount host directory during evaluation.
+While running the image, the name of the files will be passed as environment variables 
+so the image can execute a bash command with the environment variables.
+
+### Example Docker projects
+Please check out a few example project that will be listed below
+and don't hesitate to contact oragnizers if any help or clarification neeeded.
+
+
+
+### Environment Variables 
+We will use **environment variables** to pass the path to the input and output files.
+* `MODEL`, `EVID`, `QUERY`, `RESULT` environment variables are the name of each file
+* `QUERY` filename is only relevant to the marginal MAP task, so solvers working on the other three tasks should ignore this file.
+* a solver is expected to run the command ``` $ ./solver $MODEL $EVID $QUERY $RESULT ```
+
 The formats are described here:
 * [Model Format](../file-formats/model-format.md)   
 * [Evidence Format](../file-formats/evidence-format.md)
 * [Query variables](../file-formats/query-format.md) (only applies to the marginal MAP task)
 * [Result format](../file-formats/result-format.md)
-    
-
-### Result Format
-The solver should generate a file and write the results to it. 
-The output file should have the same name as the input model file, 
-but with the added suffix “.XXX” where XXX is the task being solved (PR, MAR etc.). For example, after calling:
-```
-./solver Nets/grid5X5.uai Evid/grid5X5.uai.evid Query/grid5x5.uai.query  PR
-```
-
+   
