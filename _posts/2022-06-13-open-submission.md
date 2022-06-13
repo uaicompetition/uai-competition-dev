@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "Open Solver Submission from 6/15"
 last_modified_at: 2022-06-13T09:00:00-10:00
 categories:
   - general
