@@ -1,9 +1,10 @@
 ---
 title: "Open Solver Submission from 6/15"
-last_modified_at: 2022-06-13T09:00:00-10:00
+date: 2022-06-13T09:00:00-10:00
 categories:
   - general
 ---
+
 We will start to accept solver submissions starting from June 15th.
 
 Please fill in the [Google Form](https://docs.google.com/forms/d/e/1FAIpQLSc9pvuWqNzH6m4yglGSOHJnnWvtrnbLtrYTWpzrck_EByTsew/viewform)!
