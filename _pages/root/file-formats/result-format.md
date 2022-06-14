@@ -53,6 +53,12 @@ The solution format are as follows depending on the task
 3 2 0 3 1 4 0
 ```
 
-* **Multi label classfication, MLC**: TBD
+* **Multi label classfication, MLC**: A space separated line that includes:
+    * The number _l_ of (possibly non-binary) properties or query variables
+    * the predicted label for each query variable, a list of variable value pairs for all _l_ variables.
+    * For example, if the predicted labels are 2, 1 and 3 for three query variables indexed by 4 8 and 9 respectively, the solution will look as follows
+```
+3 4 2 8 1 9 3
+```
 
-If a solver does not produce a solution by the given time, it would be considered as having failed on the instance.
+*Note*: If a solver does not produce a solution by the given time, it would be considered as having failed on the instance.
