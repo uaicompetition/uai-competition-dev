@@ -7,7 +7,7 @@ categories:
 
 We will begin accepting solver submissions on June 15th.
 
-Please fill the [Google Form](https://docs.google.com/forms/d/e/1FAIpQLSc9pvuWqNzH6m4yglGSOHJnnWvtrnbLtrYTWpzrck_EByTsew/viewform) to register your team and submit your solver(s)!
+Please fill the [Google Form](https://docs.google.com/forms/d/e/1FAIpQLSfM5IU0bc6s569igW1OyswgNIJLyyUt8QYVbzdJ0hfwyy3Xpw/viewform?usp=sf_link) to register your team and submit your solver(s)!
 
 * You may submit up to 3 solvers per task that use different approaches. 
 (Please contact organizers via `uaicompetition at gmail dot com` if you wish to submit more than 3 solvers for a task).
