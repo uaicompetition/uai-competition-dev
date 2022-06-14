@@ -39,7 +39,7 @@ We will be accepting submissions as Docker images. Participants have two options
 
 ### How to Containerize Solvers in Docker
 Solvers containerized as a Docker image will allow use of any working environment seamlessly,
-indepent to the CentOS-based cluster environment.
+indepent to the CentOS-based cluster environment at UCI.
 
 Each image should be equipped with an executable and a folder to mount the host directory during evaluation.
 While running the image, the names of the files will be passed as environment variables (see section below on
@@ -57,7 +57,24 @@ and don't hesitate to contact oragnizers if any help or clarification neeeded.
 We will use **environment variables** to pass the path of the input and output files.
 * `MODEL`, `EVID`, `QUERY`, `RESULT` are the environment variables that will be used to pass the path of their respective files.
 * `QUERY` filename is only relevant to the marginal MAP task, so solvers working on the other three tasks should ignore this file.
-* a solver is expected to run the command ``` $ ./solver $MODEL $EVID $QUERY $RESULT ```
+* some bash command could launch solvers withenvironment variables. Please see example Dockerfile in the docker project.
+* for example, 
+```
+$ ./solver --input $MODEL --evidence $EVID --query $QUERY --output $RESULT --some-parameter 1
+
+# the command in Docker file could be 
+CMD ["bash", "-c", "/root/solver --input $MODEL --evidence $EVID --query $QUERY --output $RESULT --some-parameter 1"] 
+```
+Or
+```
+$ python solver.py --input-path $MODEL --evid-path $EVID --output-path $RESULT  
+
+# the command in Docker file could be
+CMD ["bash", "-c", "python solver.py --input-path $MODEL --evid-path $EVID --output-path $RESULT"] 
+```
+* Note that we don't pose any restriction on how to utilize 4 environment varaibles,
+and each solver can assume that necessary files will be mounted under `/problems` folder inside the image.
+Please create `/problems` directory when you `COPY` your necessary files into image.
 
 The file formats are described here:
 * [Model Format](../file-formats/model-format.md)   
