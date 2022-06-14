@@ -3,7 +3,7 @@ title: "File Formats"
 permalink: /file-formats/query-format/
 ---
 
-## Query File Format (only applies to Marginal MAP task)
+## Query File Format (only applies to Marginal MAP and MLC tasks)
 Query variables for marginal MAP inference are specified in a separate file. 
 This file has the same name as the original network file but with an added **.query** suffix. 
 For instance with respect to the UAI model format, _problem.uai_ will have evidence in _problem.uai.query_.
@@ -17,4 +17,11 @@ if we wanted to use Y as the query variable the file _example.uai.query_ would c
 
 ```
 1 1
+```
+
+As a second example, if variables with indices 0, 4, 8 and 17 are query variables, the query file would
+contain the following:
+
+```
+4 0 4 8 17
 ```
