@@ -55,7 +55,7 @@ Technically, given a Markov network M, this task is equivalent to the marginal m
 Thus approaches that forgo the compilation phase and solve the prediction
 task at test time using a MMAP solver can also participate in this task.
 
-### Data Generator
+#### Data Generator
 The goal of the data generator is to provide a signal to your learning algorithm by sampling the Markov network. 
 Given a Markov network representing the probability distribution \\(Pr(H,E,Q)\\). the data generator will generate \\(m\\)
 samples from \\(Pr(E)\\) (via Gibbs sampling) and for each sampled assignment \\(E=e\\), perform local search to find an assignment \\(q\\) to
