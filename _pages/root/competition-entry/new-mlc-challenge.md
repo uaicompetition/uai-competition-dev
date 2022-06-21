@@ -28,7 +28,7 @@ For instance with respect to the UAI model format, _problem.uai_ will have evide
 
 The partition file has two lines. The first line will begin with the number of evidence variables, followed by the indexes of the evidence variables; and the second line will begin with the number of query variables, followed by the indexes of the query variables.
 
-For example, given a Markov network having 10 variables, let the indices of the hidden, evidence and query variables be \\(0,2,3,9)\\), \\(1,4,7\\) and \\(5,6,8\\) respectively. Then the partition file would contain the following:
+For example, given a Markov network having 10 variables, let the indices of the hidden, evidence and query variables be (_0,2,3,9_), (_1,4,7_) and (_5,6,8_) respectively. Then the partition file would contain the following:
 
 ```
 3 1 4 7
