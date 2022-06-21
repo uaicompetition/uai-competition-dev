@@ -52,13 +52,13 @@ The first variable have the role of the 'most significant’ digit.
 * Tuples are implicitly assumed in ascending order, with the last variable in the scope as the 'least significant’. 
 * To illustrate, we continue with our Markov network example from above, let's assume the following conditional probability tables:
 
-| X | P(X) |
+| X | f(X) |
 | :--- | :----: | 
 | 0 | 0.436 |
-| 1 | 0.456 |
+| 1 | 0.564 |
 
 
-| X |	Y |	P(Y,X) |
+| X |	Y |	f(Y,X) |
 | :--- | :--- | :----: | 
 | 0 |	0 |	0.128  |
 | 0 |	1 |	0.872 |
@@ -66,7 +66,7 @@ The first variable have the role of the 'most significant’ digit.
 | 1 |	1 |	0.080 |
 
 
-| Y | 	Z | 	P(Z,Y) | 
+| Y | 	Z | 	f(Z,Y) | 
 | :--- | :--- | :----: | 
 | 0 | 	0 | 	0.210 | 
 | 0 | 	1 | 	0.333 | 
