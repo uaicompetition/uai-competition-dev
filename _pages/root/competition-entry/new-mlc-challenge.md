@@ -72,4 +72,4 @@ Note that you are free to write your own data generator or not use it at all. It
 
 You will provide us your compiled/learned models \\(C_k\\) (if any) for
 each Markov network \\(M_k\\) and a program which takes as input (1) your compiled model \\(C_k\\) (if a
-compiled model is not provided, we will assume that \\(C_k = M_k\\)), (2) an evidence file, (3) a query file and a path to the result file. Your program should output the most-probable assignment to all the query variables given evidence and store the result in the result file (see [Result format](../file-formats/result-format.md)).
+compiled model is not provided, we will assume that \\(C_k = M_k\\)), (2) an evidence file, (3) a query file and (4) a path to the result file. Your program should output the most-probable assignment to all the query variables given evidence and store the result in the result file (see [Result format](../file-formats/result-format.md)).
