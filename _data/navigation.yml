@@ -45,6 +45,8 @@ docs:
       url: /file-formats/query-format
     - title: "Result Format"
       url: /file-formats/result-format
+    - title: "Data Format"
+      url: /file-formats/data-format
 
   - title: "Competition Entry"
     url: /competition-entry
