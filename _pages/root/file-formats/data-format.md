@@ -18,7 +18,7 @@ For example, given a Markov network having _10_ variables, let the indices of th
 * The first data point is an assignment of values _(0,2,1)_ and _(2,1,0)_ to the evidence variables (_1,4,7_) and (_5,6,8_) respectively. The weight of the assignment is -48.21
 * The second data point is an assignment of values _(1,0,1)_ and _(1,0,3)_ to the evidence variables (_1,4,7_) and (_5,6,8_) respectively. The weight of the assignment is -76.27
 
-Then, the data file _problem.uai.data_ will contain
+the data file will contain the following:
 
 ```
 2
