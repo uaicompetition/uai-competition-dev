@@ -3,22 +3,73 @@ title: "File Formats"
 permalink: /file-formats/model-format/
 ---
 
-## Model Format
-We use the simple text file format specified below to describe problem instances (Markov networks). 
+# Model Format
+We use a simple text-file format specified below to describe the graphical model neworks (Markov networks) for problem instances. 
 The format is a generalization of the Ergo file format initially developed by Noetic systems Ergo software.
-We use the **.uai** suffix for the challenge benchmark network files.
+We use the suffix **.uai** to denote the model files.
 
-### Structure
-A file in the UAI format consists of the following two parts, in that order:
+## Structure
+A file in the UAI format consists of the following two parts, in order:
 ```
 <Preamble>
 <Function tables>
 ```
-The contents of each section (denoted <…> above) are described in the following:
+which are described below.
 
-### Preamble
-Our description of the format will follow a simple Markov network with three variables and two functions. A sample preamble for such a network is:
+## Preamble
+The preamble consists of the following portions, in order:
+```
+<Graph Type>
+<Variables and Domains>
+<Function Scopes>
+```
+which we now describe...
 
+### Graph Type
+
+The Graph Type is a metalabel signifying the type of network being encoded.  Generally, this can be either BAYES for a Bayesian network or MARKOV for a Markov network. For our competition, the label will always be:
+```
+MARKOV
+```
+
+
+### Variables and Domains
+
+This portion of the preamble contains two lines.
+
+The first line consists of a single number, N, specifying the number of variables in the network.
+Each variable is implicitly labled as 0, 1, ... , N.
+
+The second line specifies the cardinalities of each variable separated by a whitespace (in order from 0, 1, ... , N).
+
+An example of a network with three variables, the first two having a domain size of 2
+and the last variable having a domain size of 3, would look like:
+```
+3
+2 2 3
+```
+
+### Function Scopes
+
+The last section of the preamble states the number of functions in the network as well as their respective scopes.
+
+First is a single number specifying the number of functions in the network.
+
+Next, there will be a line for each function.  Each successive line (which is for a single funciton)
+states the number of variables that belong to the function's scope followed by the index identity of
+each of the variable's in the function's scope.
+
+For a network containing two functions, the first of which has a scope consisting of variable index 0 and variable index 1
+and the second of which has a scope consisting of variable index 1 and variable index 2, the file would show:
+```
+2
+2 0 1
+2 1 2
+```
+(Note: The order of the list of varaibles in a function's scope is not restricted. When defining the function values, the ordering of variables within a factor will follow the order provided here).
+
+### Preamble Summary
+The preamble for our simple Markov network with three variables and two functions described above would look like:
 ```
 MARKOV
 3
@@ -27,21 +78,10 @@ MARKOV
 2 0 1
 2 1 2
 ```
-
-* The first line denotes the type of network.<br/> 
-Generally, this can be either BAYES for a Bayesian network or MARKOV for a Markov network. 
-* The second line contains the number of variables. 
-* The next line specifies the cardinalities of each variable, one at a time, separated by a whitespace
-(note that this implies an order on the variables which will be used throughout the file). 
-* The fourth line contains only one integer, denoting the number of functions or cliques in the problem. 
-* Then, one clique per line, the scope of each clique is given as follows:
-  * The first integer in each line specifies the number of variables in the clique, followed by the actual indexes of the variables. 
-  * The order of this list is not restricted. Note that the ordering of variables within a factor will follow the order provided here.
-
-Referring to the example above, the first line denotes the Markov network, the second line tells us the problem consists of three variables, let's refer to them as X, Y, and Z. Their cardinalities are 2, 2, and 3 respectively (from the third line). Line four specifies that there are 2 cliques. The first clique is X,Y, while the second clique is Y,Z. Note that variables are indexed starting with 0.
+In the example above, the first line denotes a Markov network, the second line tells us the problem consists of three variables, let's refer to them as X, Y, and Z (which will implicitly have indexes 0, 1, and 2, respectively). The third line tells us that X, Y, and Z's cardinalities are 2, 2, and 3 respectively. Line four specifies that there are 2 functions. Based on the final two lines, we know that the first function is defined over X and Y, while the second is defined over Y and Z.
 
 
-### Function tables
+## Function tables
 Under the preample, 
 each factor is specified by giving its full table by specifying value for each assignment. 
 The order of the factor must be identical to the one in which they were introduced in the preamble.
@@ -91,7 +131,7 @@ The first variable have the role of the 'most significant’ digit.
 Note that line breaks and empty lines are effectively just a whitespace, exactly like plain spaces “ ”. 
 They are used here to improve readability.
 
-### Summary
+## Summary
 In summary, a problem file consists of 2 sections: 
 * the preamble
 * the function tables.
