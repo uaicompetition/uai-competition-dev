@@ -40,7 +40,7 @@ This portion of the preamble contains two lines.
 The first line consists of a single number, N, specifying the number of variables in the network.
 Each variable is implicitly labled as 0, 1, ... , N.
 
-The second line specifies the cardinalities of each variable separated by a whitespace (in order from 0, 1, ... , N).
+The second line specifies the cardinalities (or domain size) of each variable separated by a whitespace (in order from 0, 1, ... , N).
 
 An example of a network with three variables, the first two having a domain size of 2
 and the last variable having a domain size of 3, would look like:
@@ -59,10 +59,10 @@ Next, there will be a line for each function.  Each successive line (which is fo
 states the number of variables that belong to the function's scope followed by the index identity of
 each of the variable's in the function's scope.
 
-For a network containing two functions, the first of which has a scope consisting of variable index 0 and variable index 1
-and the second of which has a scope consisting of variable index 1 and variable index 2, the file would show:
+For a network containing three functions, the first of which is a unary factor on variable index 0, the second a factor over variables index 0 and index 1, and the third of which has a scope consisting of variables index 1 and index 2, the file would show:
 ```
-2
+3
+1 0
 2 0 1
 2 1 2
 ```
@@ -74,23 +74,30 @@ The preamble for our simple Markov network with three variables and two function
 MARKOV
 3
 2 2 3
-2
+3
+1 0
 2 0 1
 2 1 2
 ```
-In the example above, the first line denotes a Markov network, the second line tells us the problem consists of three variables, let's refer to them as X, Y, and Z (which will implicitly have indexes 0, 1, and 2, respectively). The third line tells us that X, Y, and Z's cardinalities are 2, 2, and 3 respectively. Line four specifies that there are 2 functions. Based on the final two lines, we know that the first function is defined over X and Y, while the second is defined over Y and Z.
+In the example above, the first line denotes a Markov network, the second line tells us the problem consists of three variables, let's refer to them as X, Y, and Z (which will implicitly have indexes 0, 1, and 2, respectively). The third line tells us that X, Y, and Z's cardinalities are 2, 2, and 3 respectively. Line four specifies that there are 3 functions. Based on the final three lines, we know that the first function is a unary function on X, the second function is defined over X and Y, while the second is defined over Y and Z.
 
 
-## Function tables
-Under the preample, 
-each factor is specified by giving its full table by specifying value for each assignment. 
-The order of the factor must be identical to the one in which they were introduced in the preamble.
-The first variable have the role of the 'most significant’ digit. 
+## Function Tables
+Under the preamble, 
+each function is specified - one-by-one, separated by a blank line, in the order introduced in the preamble - by giving its full table.  Each function table is presented as follows:
+```
+<blank line>
+<Number of Table Values>
+<Table Values>
+```
+Before each function specification, there is a separating blank line.
 
-* For each factor table, the first the number of entries (row) is given, and this should be equal to the product of the domain sizes of the variables in the scope. 
-* Then, one by one, separated by whitespace, the values for each assignment to the variables in the function's scope are enumerated. 
-* Tuples are implicitly assumed in ascending order, with the last variable in the scope as the 'least significant’. 
-* To illustrate, we continue with our Markov network example from above, let's assume the following conditional probability tables:
+Next, a single integer representing the number of table values for the function is presented.  (This number corresponds to product of the cardinalities (ie. domain sizes) of each variable within its scope).
+
+The next line(s) enumerate the function values corresponding to each assignment of the variables within the function's scope, separated by a whitespace (the whitespace optionally being a newline).  Tuples acting as assignments to the variables in the function's scope are implicitly assumed in ascending order, with the first variable in its scope (as presented in the preamble) being the 'most significant' and the last variable in the scope as the 'least significant’. For example, for a function having a scope of two variables Y and Z with cardinalities 2 and 3 respectively, function values will be presented in order for the assignments: (Y=0,Z=0), (Y=0,Z=1), (Y=0,Z=2), (Y=1,Z=0), (Y=1,Z=1), (Y=1,Z=2).
+
+
+To illustrate, we continue with our Markov network example from above, let's assume the following conditional probability tables for the functions defined in our preamble:
 
 | X | P(X) |
 | :--- | :----: | 
@@ -115,6 +122,9 @@ The first variable have the role of the 'most significant’ digit.
 | 1 | 	1 | 	0.000 | 
 | 1 | 	2 | 	0.189 | 
 
+
+The associated function tables can look as follows:
+
 ```
 2
  0.436 0.564
@@ -128,16 +138,22 @@ The first variable have the role of the 'most significant’ digit.
  0.811 0.000 0.189
 ```
 
-Note that line breaks and empty lines are effectively just a whitespace, exactly like plain spaces “ ”. 
+Note that line breaks and empty lines act as a whitespace, exactly like plain spaces “ ”. 
 They are used here to improve readability.
 
 ## Summary
-In summary, a problem file consists of 2 sections: 
-* the preamble
-* the function tables.
+In summary, a problem file consists of two sections (with associated subsections): 
+1. Preamble
+    * Graph Type
+    * Variables and Domains
+    * Function Scopes
+2. Function Tables
+    * blank line
+    * Number of Table Values
+    * Table Values
 
 
-For our Markov network example above, the full uai file will look like:
+For our Markov network example above, the full .uai file will look like:
 ```
 MARKOV
 3
