@@ -57,7 +57,7 @@ First is a single number specifying the number of functions in the network.
 
 Next, there will be a line for each function.  Each successive line (which is for a single funciton)
 states the number of variables that belong to the function's scope followed by the index identity of
-each of the variable's in the function's scope.
+each of the variables in the function's scope.
 
 For a network containing three functions, the first of which is a unary factor on variable index 0, the second a factor over variables index 0 and index 1, and the third of which has a scope consisting of variables index 1 and index 2, the file would show:
 ```
@@ -94,10 +94,19 @@ Before each function specification, there is a separating blank line.
 
 Next, a single integer representing the number of table values for the function is presented.  (This number corresponds to product of the cardinalities (ie. domain sizes) of each variable within its scope).
 
-The next line(s) enumerate the function values corresponding to each assignment of the variables within the function's scope, separated by a whitespace (the whitespace optionally being a newline).  Tuples acting as assignments to the variables in the function's scope are implicitly assumed in ascending order, with the first variable in its scope (as presented in the preamble) being the 'most significant' and the last variable in the scope as the 'least significant’. For example, for a function having a scope of two variables Y and Z with cardinalities 2 and 3 respectively, function values will be presented in order for the assignments: (Y=0,Z=0), (Y=0,Z=1), (Y=0,Z=2), (Y=1,Z=0), (Y=1,Z=1), (Y=1,Z=2).
+The next line(s) enumerate the function values corresponding to each assignment of the variables within the function's scope, separated by a whitespace (the whitespace optionally being a newline).
 
+An example of a function specification is as follows:
+```
 
-To illustrate, we continue with our Markov network example from above, let's assume the following conditional probability tables for the functions defined in our preamble:
+6
+0.210 0.333 0.457 0.811 0.000 0.189
+```
+The 6 indicates that there are a total of six possible assignments to the variables in the functions scope, and so the table has 6 values.
+
+The following line contains the function values for the six different assignments possible to the variables within the function's scope.  Tuples acting as assignments to the variables in the function's scope are implicitly assumed in ascending order, with the first variable in its scope (as presented in the preamble) being the 'most significant' and the last variable in the scope as the 'least significant’. For example, assuming our example function above has a scope of two variables Y and Z with cardinalities 2 and 3 respectively, the function values are presented in order for the assignments: (Y=0,Z=0), (Y=0,Z=1), (Y=0,Z=2), (Y=1,Z=0), (Y=1,Z=1), (Y=1,Z=2).
+
+To illustrate this more comprehensively, we continue with our Markov network example from the preamble description assuming the following conditional probability tables for the functions outlined in our preamble (in order):
 
 | X | P(X) |
 | :--- | :----: | 
@@ -138,8 +147,8 @@ The associated function tables can look as follows:
  0.811 0.000 0.189
 ```
 
-Note that line breaks and empty lines act as a whitespace, exactly like plain spaces “ ”. 
-They are used here to improve readability.
+(Note that line breaks and empty lines act as a whitespace, exactly like plain spaces “ ”. 
+They are used here to improve readability).
 
 ## Summary
 In summary, a problem file consists of two sections (with associated subsections): 
