@@ -104,7 +104,7 @@ An example of a function specification is as follows:
 ```
 The 6 indicates that there are a total of six possible assignments to the variables in the functions scope, and so the table has 6 values.
 
-The following line contains the function values for the six different assignments possible to the variables within the function's scope.  Tuples acting as assignments to the variables in the function's scope are implicitly assumed in ascending order, with the first variable in its scope (as presented in the preamble) being the 'most significant' and the last variable in the scope as the 'least significant’. For example, assuming our example function above has a scope of two variables Y and Z with cardinalities 2 and 3 respectively, the function values are presented in order for the assignments: (Y=0,Z=0), (Y=0,Z=1), (Y=0,Z=2), (Y=1,Z=0), (Y=1,Z=1), (Y=1,Z=2).
+The next line contains the function values for the six different assignments possible to the variables within the function's scope.  Tuples acting as assignments to the variables are implicitly assumed in ascending order, with the first variable in its scope (as presented in the preamble) being the 'most significant' and the last variable in the scope as the 'least significant’. For example, assuming our example function above has a scope of two variables Y and Z with cardinalities 2 and 3 respectively, the function values are presented in order for the assignments: (Y=0,Z=0), (Y=0,Z=1), (Y=0,Z=2), (Y=1,Z=0), (Y=1,Z=1), (Y=1,Z=2).
 
 To illustrate this more comprehensively, we continue with our Markov network example from the preamble description assuming the following conditional probability tables for the functions outlined in our preamble (in order):
 
